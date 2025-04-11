@@ -1,0 +1,22 @@
+{
+  "name": "youtube-summarizer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "A YouTube video summarizer using PocketFlow and Google Gemini API",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.0",
+    "compromise": "^14.14.4",
+    "pocketflow": "^1.0.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "youtube-transcript": "^1.2.1",
+    "youtube-transcript-ts": "^1.3.0"
+  }
+}
