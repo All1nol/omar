@@ -1,4 +1,4 @@
-import { IChunkingStrategy } from '../../interfaces/chunkingStrategy';
+import { IChunkingStrategy } from '../interfaces/chunkingStrategy';
 
 /**
  * Base class for transcript chunking strategies

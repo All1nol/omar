@@ -1,9 +1,9 @@
 import { Node } from 'pocketflow';
 import { YoutubeSharedStore } from '../../types/sharedStore';
 import { IChunkingStrategy } from '../../interfaces/chunkingStrategy';
-import { UniformSamplingStrategy } from '../../strategies/chunking/uniformSamplingStrategy';
-import { BookendSamplingStrategy } from '../../strategies/chunking/bookendSamplingStrategy';
-import { IntelligentSamplingStrategy } from '../../strategies/chunking/intelligentSamplingStrategy';
+import { UniformSamplingStrategy } from '../../chunking/uniformSamplingStrategy';
+import { BookendSamplingStrategy } from '../../chunking/bookendSamplingStrategy';
+import { IntelligentSamplingStrategy } from '../../chunking/intelligentSamplingStrategy';
 import { SamplingMethod } from '../../config/appConfig';
 
 /**

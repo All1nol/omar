@@ -2,7 +2,7 @@ import * as readline from 'readline';
 import * as fs from 'fs';
 import * as path from 'path';
 import { YoutubeSharedStore } from '../types/sharedStore';
-import { parseCommandLineArgs } from '../config/appConfig';
+import { parseCommandLineArgs, SamplingMethod } from '../config/appConfig';
 import { YouTubeSummarizerFlowBuilder } from './flowBuilder';
 
 /**
@@ -148,5 +148,98 @@ function handleResults(shared: YoutubeSharedStore, startTime: number): void {
       fs.writeFileSync(outputFile, shared.formattedSummary || shared.summary);
       console.log(`\nSummary saved to: ${outputFile}`);
     }
+  }
+}
+
+/**
+ * Result interface for headless summarizer
+ */
+export interface SummarizerResult {
+  summary: string;
+  videoId: string;
+  transcriptLength: number;
+  chunksProcessed: number;
+  processingTimeSeconds: number;
+}
+
+/**
+ * Options for headless summarizer
+ */
+export interface SummarizerOptions {
+  chunkingStrategy?: SamplingMethod;
+  highQualityMode?: boolean;
+  apiKey?: string;
+}
+
+/**
+ * Headless version of YouTube Summarizer for use in API routes
+ * @param videoUrl YouTube video URL to summarize
+ * @param options Options for summarization
+ * @returns Promise resolving to summarizer result
+ */
+export async function runYouTubeSummarizerHeadless(
+  videoUrl: string,
+  options: SummarizerOptions = {}
+): Promise<SummarizerResult> {
+  // Start timing
+  const startTime = Date.now();
+  
+  try {
+    // Get API key from environment if not provided
+    const apiKey = options.apiKey || process.env.GEMINI_API_KEY;
+    
+    if (!apiKey) {
+      throw new Error('No API key provided for generative service');
+    }
+    
+    // Use default config with options
+    const config = parseCommandLineArgs();
+    
+    // Apply options to config
+    if (options.highQualityMode) {
+      config.highQualityMode = true;
+    }
+    
+    if (options.chunkingStrategy) {
+      // Cast the string to SamplingMethod type since we've validated the values in the UI
+      config.samplingMethod = options.chunkingStrategy as SamplingMethod;
+    }
+    
+    // Initialize shared store
+    const shared: YoutubeSharedStore = {
+      apiKey,
+      videoUrl
+    };
+    
+    // Create and run the flow
+    console.log('Creating YouTube summarizer flow...');
+    const flowBuilder = new YouTubeSummarizerFlowBuilder(config, apiKey);
+    const flow = flowBuilder.build();
+    
+    console.log('Starting YouTube video summarization process...');
+    
+    // Run the flow
+    await flow.run(shared);
+    
+    // Calculate processing time
+    const processingTimeSeconds = (Date.now() - startTime) / 1000;
+    
+    // Check for errors
+    if (shared.error) {
+      throw new Error(shared.error);
+    }
+    
+    // Return the results
+    return {
+      summary: shared.formattedSummary || shared.summary || 'No summary generated',
+      videoId: shared.videoId || 'unknown',
+      transcriptLength: shared.transcript?.length || 0,
+      chunksProcessed: shared.chunks?.length || 0,
+      processingTimeSeconds
+    };
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error('Error in YouTube summarizer:', errorMessage);
+    throw error;
   }
 } 

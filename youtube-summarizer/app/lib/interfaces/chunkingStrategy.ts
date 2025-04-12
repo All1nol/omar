@@ -4,9 +4,9 @@
  */
 export interface IChunkingStrategy {
   /**
-   * Splits a transcript into manageable chunks
+   * Chunks a transcript into manageable pieces
    * @param transcript The full transcript text
-   * @param maxLength Maximum length to process (for long videos)
+   * @param maxLength Maximum length to process
    * @returns Array of transcript chunks
    */
   chunkTranscript(transcript: string, maxLength: number): string[];

@@ -9,10 +9,10 @@
  * 2. Reduce phase: Combine the chunk summaries into a coherent final summary
  */
 
-import { runYouTubeSummarizer } from './core/runner';
+import { runYouTubeSummarizer } from '../lib/core/runner';
 
 // Start the application
-runYouTubeSummarizer().catch(error => {
+runYouTubeSummarizer().catch((error: unknown) => {
   console.error('Unhandled error in YouTube Summarizer:', error);
   process.exit(1);
-});
+}); 

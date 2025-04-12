@@ -1,11 +1,20 @@
+# Environment variables
 .env
 .env.local
 .env.development
 .env.production
 .env.test
 .env.test.local
+.env*.local
+
+# API Keys (just in case any are hardcoded in files)
+**/*/config/api_keys.js
+**/*/config/api_keys.ts
+
+# Project directories
 docs/
 docs1/
+output/
 
 # Dependencies
 node_modules/
@@ -20,6 +29,13 @@ dist/
 build/
 *.tsbuildinfo
 
+# Next.js
+.next/
+out/
+
+# Vercel
+.vercel/
+
 # IDE and editor files
 .idea/
 .vscode/
@@ -31,6 +47,9 @@ Thumbs.db
 # Logs
 logs/
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Coverage directory
 coverage/
@@ -38,4 +57,11 @@ coverage/
 # Temporary files
 tmp/
 temp/
+
+# Cache
+.cache/
+.npm/
+
+# TypeScript
+*.tsbuildinfo
 

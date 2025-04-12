@@ -1,0 +1,13 @@
+# Root level node_modules
+/node_modules/
+
+# Youtube summarizer project files
+/youtube-summarizer/node_modules/
+/youtube-summarizer/.next/
+/youtube-summarizer/dist/
+/youtube-summarizer/build/
+/youtube-summarizer/.vercel/
+/youtube-summarizer/.env
+/youtube-summarizer/.env.*
+/youtube-summarizer/*.log
+/youtube-summarizer/out/ 

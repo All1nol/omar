@@ -4,7 +4,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/index.ts"
+    "start": "ts-node app/src/index.ts",
+    "dev": "next dev",
+    "build": "next build",
+    "start:next": "next start",
+    "lint": "next lint"
   },
   "keywords": [],
   "author": "",
@@ -12,11 +16,30 @@
   "description": "A YouTube video summarizer using PocketFlow and Google Gemini API",
   "dependencies": {
     "@google/generative-ai": "^0.24.0",
+    "@radix-ui/react-slot": "^1.2.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "compromise": "^14.14.4",
+    "lucide-react": "^0.487.0",
+    "next": "^15.3.0",
     "pocketflow": "^1.0.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "shadcn-ui": "^0.9.5",
+    "tailwind-merge": "^3.2.0",
     "ts-node": "^10.9.2",
+    "tw-animate-css": "^1.2.5",
     "typescript": "^5.8.3",
     "youtube-transcript": "^1.2.1",
     "youtube-transcript-ts": "^1.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.3",
+    "@types/react": "^19.1.1",
+    "@types/react-dom": "^19.1.2",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.3",
+    "tailwindcss-animate": "^1.0.7"
   }
 }
