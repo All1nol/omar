@@ -17,10 +17,13 @@
   "dependencies": {
     "@google/generative-ai": "^0.24.0",
     "@radix-ui/react-slot": "^1.2.0",
+    "axios": "^1.8.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "compromise": "^14.14.4",
+    "dotenv": "^16.5.0",
     "lucide-react": "^0.487.0",
+    "mongoose": "^8.13.2",
     "next": "^15.3.0",
     "pocketflow": "^1.0.4",
     "react": "^19.1.0",
